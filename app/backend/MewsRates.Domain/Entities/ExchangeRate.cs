@@ -17,10 +17,13 @@ public class ExchangeRate
 
     public decimal Value { get; }
 
-    public static Option<ExchangeRate> Create(Currency sourceCurrency, Currency targetCurrency, decimal value)
+    private static bool IsValidValue(decimal value) => value > 0.0M;
+
+    public static Option<ExchangeRate> Create(Option<Currency> sourceCurrency,
+        Option<Currency> targetCurrency, decimal value)
     {
-        return (value > 0.0M)
-            ? Option.Valued<ExchangeRate>(new(sourceCurrency, targetCurrency, value))
-            : Option.Empty<ExchangeRate>();
+        return from s in sourceCurrency
+               from t in targetCurrency
+               select IsValidValue(value) ? new ExchangeRate(s, t, value) : null;
     }
 }

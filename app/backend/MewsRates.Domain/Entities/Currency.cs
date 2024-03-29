@@ -18,11 +18,12 @@ public class Currency
         Code = code;
     }
 
+    public override int GetHashCode() => Code.GetHashCode();
+
     /// <param name="code">Three-letter ISO 4217 code of the currency.</param>
     public static Option<Currency> Create(string code)
     {
-        return re.Value.IsMatch(code)
-            ? Option.Valued<Currency>(new(code.ToUpper()))
-            : Option.Empty<Currency>();
+        var predicate = code is not null && re.Value.IsMatch(code);
+        return Option.Create<Currency>(predicate ? new(code.ToUpper()) : null);
     }
 }
