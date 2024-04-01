@@ -2,10 +2,6 @@ using FuncSharp;
 
 namespace MewsRates.Application;
 
-public sealed class ExchangeRateProviderCommunicationError { }
-
-public sealed class ExchangeRateProviderSerializationError { }
-
 public sealed class ExchangeRateProviderError
     : Coproduct2<ExchangeRateProviderCommunicationError, ExchangeRateProviderSerializationError>
 {
@@ -15,3 +11,7 @@ public sealed class ExchangeRateProviderError
     public ExchangeRateProviderError(ExchangeRateProviderSerializationError secondValue)
         : base(secondValue) { }
 }
+
+public sealed class ExchangeRateProviderCommunicationError { }
+
+public sealed class ExchangeRateProviderSerializationError { }
