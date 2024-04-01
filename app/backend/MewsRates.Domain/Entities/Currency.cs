@@ -4,7 +4,7 @@ using FuncSharp;
 
 namespace MewsRates.Domain;
 
-public class Currency
+public sealed class Currency
 {
     private static readonly Lazy<Regex> re = new(() => new(@"^[A-Za-z]{3}$", RegexOptions.Compiled));
 
@@ -18,12 +18,21 @@ public class Currency
         Code = code;
     }
 
+    public bool Equals(Currency? obj) => obj is not null && Code == obj.Code;
+
+    public override bool Equals(object? obj) => Equals(obj as Currency);
+
     public override int GetHashCode() => Code.GetHashCode();
 
+    /// <summary></summary>
     /// <param name="code">Three-letter ISO 4217 code of the currency.</param>
-    public static Option<Currency> Create(string code)
+    public static Option<Currency> Create(string? code)
     {
-        var predicate = code is not null && re.Value.IsMatch(code);
-        return Option.Create<Currency>(predicate ? new(code.ToUpper()) : null);
+        return code is not null && re.Value.IsMatch(code)
+            ? Option.Valued<Currency>(new(code.ToUpper())) : Option.Empty<Currency>();
     }
+
+    /// <summary></summary>
+    /// <param name="code">Three-letter ISO 4217 code of the currency.</param>
+    public static Currency CreateUnsafe(string code) => new(code);
 }

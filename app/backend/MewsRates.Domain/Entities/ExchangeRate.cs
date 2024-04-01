@@ -2,7 +2,7 @@ using FuncSharp;
 
 namespace MewsRates.Domain;
 
-public class ExchangeRate
+public sealed class ExchangeRate
 {
     private ExchangeRate(Currency sourceCurrency, Currency targetCurrency, decimal value)
     {
@@ -17,13 +17,15 @@ public class ExchangeRate
 
     public decimal Value { get; }
 
-    private static bool IsValidValue(decimal value) => value > 0.0M;
-
+    /// <summary></summary>
+    /// <param name="sourceCurrency">Currency converted from</param>
+    /// <param name="targetCurrency">Currency converted to</param>
+    /// <param name="value">Amount of target currency for a unit of source currency</param>
     public static Option<ExchangeRate> Create(Option<Currency> sourceCurrency,
         Option<Currency> targetCurrency, decimal value)
     {
         return from s in sourceCurrency
                from t in targetCurrency
-               select IsValidValue(value) ? new ExchangeRate(s, t, value) : null;
+               select new ExchangeRate(s, t, value);
     }
 }
