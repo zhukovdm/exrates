@@ -12,6 +12,19 @@ namespace MewsRates.Infrastructure.Cnb;
 
 public sealed class CnbOpenApiExchangeRateProvider : IExchangeRateProvider
 {
+    /// <summary>
+    /// Hardcoded target currency specific for CNB Open API endpoint.
+    /// </summary>
+    private static readonly Lazy<Option<Currency>> targetCurrency = new(() => Currency.Create("CZK"));
+
+    /// <summary>
+    /// Target URL for CNB Open API endpoint with a prefix configurable from app settings.
+    /// </summary>
+    private Uri GetTargetUri()
+    {
+        return new($"{_options.Value.OpenApi.BaseUrl}?date={DateTime.Now.ToString("yyyy-MM-dd")}&lang=EN");
+    }
+
     private readonly ILogger<CnbOpenApiExchangeRateProvider> _logger;
     private readonly IOptionsSnapshot<CnbOptions> _options;
     private readonly IHttpConnector _connector;
@@ -48,19 +61,6 @@ public sealed class CnbOpenApiExchangeRateProvider : IExchangeRateProvider
                     return new ExchangeRateProviderError(new ExchangeRateProviderSerializationError());
                 }))
             .Map(resp => from item in Transform(resp) where item.NonEmpty select item.Get());
-    }
-
-    /// <summary>
-    /// Hardcoded target currency specific for CNB Open API endpoint.
-    /// </summary>
-    private static readonly Lazy<Option<Currency>> targetCurrency = new(() => Currency.Create("CZK"));
-
-    /// <summary>
-    /// Target URL for CNB Open API endpoint with a prefix configurable from app settings.
-    /// </summary>
-    private Uri GetTargetUri()
-    {
-        return new($"{_options.Value.OpenApi.BaseUrl}?date={DateTime.Now.ToString("yyyy-MM-dd")}&lang=EN");
     }
 
     private IEnumerable<Option<ExchangeRate>> Transform(ExRateDailyResponse response)
