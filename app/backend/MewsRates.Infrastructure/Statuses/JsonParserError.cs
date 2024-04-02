@@ -2,13 +2,13 @@ using FuncSharp;
 
 namespace MewsRates.Infrastructure;
 
-public class JsonParserError : Coproduct1<JsonParserFailedParsingError>
+public sealed class JsonParserError : Coproduct1<JsonParserFailedParsingError>
 {
     public JsonParserError(JsonParserFailedParsingError firstValue)
         : base(firstValue) { }
 }
 
-public class JsonParserFailedParsingError
+public sealed class JsonParserFailedParsingError
 {
     public string Message { get; }
 
