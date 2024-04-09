@@ -1,0 +1,12 @@
+**/bin/
+**/docs/
+**/obj/
+**/*.Tests/
+
+**/*.md
+**/.editorconfig
+**/.gitignore
+
+Dockerfile
+Doxyfile
+backend.sln
