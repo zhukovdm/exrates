@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using FuncSharp;
 
-namespace MewsRates.Infrastructure;
+namespace App.Infrastructure;
 
 public sealed class HttpConnector : IHttpConnector
 {

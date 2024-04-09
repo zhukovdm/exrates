@@ -1,6 +1,6 @@
 using FuncSharp;
 
-namespace MewsRates.Infrastructure;
+namespace App.Infrastructure;
 
 public interface IJsonParser
 {

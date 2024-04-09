@@ -2,7 +2,7 @@ using System;
 using FuncSharp;
 using Newtonsoft.Json;
 
-namespace MewsRates.Infrastructure;
+namespace App.Infrastructure;
 
 public sealed class JsonParser : IJsonParser
 {

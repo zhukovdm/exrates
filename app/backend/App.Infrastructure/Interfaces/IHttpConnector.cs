@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using FuncSharp;
 
-namespace MewsRates.Infrastructure;
+namespace App.Infrastructure;
 
 public interface IHttpConnector
 {

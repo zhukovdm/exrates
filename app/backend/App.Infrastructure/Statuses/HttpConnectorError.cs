@@ -1,7 +1,7 @@
 using System.Net;
 using FuncSharp;
 
-namespace MewsRates.Infrastructure;
+namespace App.Infrastructure;
 
 public sealed class HttpConnectorError
     : Coproduct2<HttpConnectorFailedRequest, HttpConnectorUnexpectedStatusCode>

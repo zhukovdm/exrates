@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
-using MewsRates.Infrastructure.Cnb;
+using App.Infrastructure.Cnb;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MewsRates.Infrastructure.Tests;
+namespace App.Infrastructure.Tests;
 
 [TestClass]
 public sealed class CnbOpenApiExchangeRateProviderTests

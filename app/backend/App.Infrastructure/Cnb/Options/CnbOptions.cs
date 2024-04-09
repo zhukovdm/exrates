@@ -1,4 +1,4 @@
-namespace MewsRates.Infrastructure.Cnb;
+namespace App.Infrastructure.Cnb;
 
 public sealed class CnbOptions
 {

@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using FuncSharp;
 
-namespace MewsRates.Infrastructure.Tests;
+namespace App.Infrastructure.Tests;
 
 public sealed class FailingHttpConnector : IHttpConnector
 {

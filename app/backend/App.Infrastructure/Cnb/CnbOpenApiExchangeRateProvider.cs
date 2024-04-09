@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Application;
+using App.Domain;
 using FuncSharp;
-using MewsRates.Application;
-using MewsRates.Domain;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace MewsRates.Infrastructure.Cnb;
+namespace App.Infrastructure.Cnb;
 
 public sealed class CnbOpenApiExchangeRateProvider : IExchangeRateProvider
 {

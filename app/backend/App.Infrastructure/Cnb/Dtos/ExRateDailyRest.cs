@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace MewsRates.Infrastructure.Cnb;
+namespace App.Infrastructure.Cnb;
 
 internal sealed class ExRateDailyRest
 {
