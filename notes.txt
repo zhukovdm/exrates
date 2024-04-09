@@ -1,0 +1,34 @@
+dotnet sln *.sln add *.csproj
+dotnet add *.csproj reference *.csproj
+
+https://en.wikipedia.org/wiki/Dependency_inversion_principle
+https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options
+https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/csharp-formatting-options
+https://stackoverflow.com/questions/15951774/does-the-use-of-the-async-suffix-in-a-method-name-depend-on-whether-the-async
+https://stackoverflow.com/questions/26264547/what-exceptions-does-newtonsoft-json-deserializeobject-throw (undocumented exceptions)
+https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/migrate-from-newtonsoft?pivots=dotnet-6-0#deserialize-null-to-non-nullable-type
+https://stackoverflow.com/a/31453663/3623646
+https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-6.0
+https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-6.0#options-validation
+https://andrewlock.net/exploring-dotnet-6-part-2-comparing-webapplicationbuilder-to-the-generic-host/
+https://github.com/dotnet/runtime/discussions/81090#discussioncomment-4784551 (ASP.NET templates)
+https://stackoverflow.com/questions/38138100/addtransient-addscoped-and-addsingleton-services-differences
+https://github.com/dotnet/runtime/issues/95524 (Ambiguous call on 'OptionsBuilderExtensions')
+https://dev.to/rickystam/net-core-use-httpclientfactory-and-polly-to-build-rock-solid-services-2edh
+https://learn.microsoft.com/en-us/shows/dotnetconf-2021/clean-architecture-with-aspnet-core-6
+https://learn.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests
+https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory
+https://stackoverflow.com/questions/59281901/api-json-response-to-c-sharp-object-with-capital-case-properties-first-letter
+https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-regex
+https://learn.microsoft.com/en-us/dotnet/standard/base-types/compilation-and-reuse-in-regular-expressions
+https://stackoverflow.com/questions/13129287/is-regex-instance-thread-safe-for-matches-in-c-sharp
+https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/how-to-define-value-equality-for-a-type
+https://csharpindepth.com/articles/Singleton#lazy
+https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/2584
+https://medium.com/@dipendupaul/documenting-a-versioned-net-web-api-using-swagger-eec0fe7aa010
+https://medium.com/@seldah/managing-multiple-versions-of-your-api-with-net-and-swagger-47b4143e8bf5
+https://parceljs.org/features/development/#dev-server
+https://youtu.be/t20txMT82ws (FuncSharp introduction)
+https://www.wikidata.org/wiki/Property:P498
+https://cbaonline.cz/upload/2468-cesky-standard-pro-open-banking-v06.pdf
+https://learn.microsoft.com/en-us/dotnet/api/system.text.codepagesencodingprovider.instance?view=net-8.0&redirectedfrom=MSDN#System_Text_CodePagesEncodingProvider_Instance
