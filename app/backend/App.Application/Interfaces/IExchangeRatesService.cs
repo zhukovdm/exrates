@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using App.Domain;
 using FuncSharp;
-using MewsRates.Domain;
 
-namespace MewsRates.Application;
+namespace App.Application;
 
 public interface IExchangeRatesService
 {

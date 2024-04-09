@@ -1,6 +1,6 @@
 using FuncSharp;
 
-namespace MewsRates.Application;
+namespace App.Application;
 
 public sealed class ExchangeRateProviderError
     : Coproduct2<ExchangeRateProviderCommunicationError, ExchangeRateProviderSerializationError>

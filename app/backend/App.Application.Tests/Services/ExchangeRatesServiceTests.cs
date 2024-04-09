@@ -1,10 +1,10 @@
 using System.Linq;
 using System.Threading.Tasks;
-using MewsRates.Domain;
+using App.Domain;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MewsRates.Application.Tests;
+namespace App.Application.Tests;
 
 [TestClass]
 public class ExchangeRatesServiceTests

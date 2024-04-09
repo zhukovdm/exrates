@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Domain;
 using FuncSharp;
-using MewsRates.Domain;
 using Microsoft.Extensions.Logging;
 
-namespace MewsRates.Application;
+namespace App.Application;
 
 public sealed class ExchangeRatesService : IExchangeRatesService
 {

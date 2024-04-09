@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using App.Domain;
 using FuncSharp;
-using MewsRates.Domain;
 
-namespace MewsRates.Application.Tests;
+namespace App.Application.Tests;
 
 public sealed class FailingExchangeRateProvider : IExchangeRateProvider
 {
