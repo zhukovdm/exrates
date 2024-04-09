@@ -17,7 +17,7 @@ namespace ExRates.Api;
 
 public static class AppConfigurator
 {
-    private static readonly string CorsPolicy = "RatesCors";
+    private static readonly string CorsPolicy = "ExRatesCors";
 
     public static void CreateLogger()
     {
@@ -82,7 +82,7 @@ public static class AppConfigurator
         Log.Information("{Phase}: Generate Swagger UI", phase);
         builder.Services.AddSwaggerGen((g) =>
         {
-            g.SwaggerDoc("v1", new OpenApiInfo { Title = "Rates API - V1", Version = "1.0.0" });
+            g.SwaggerDoc("v1", new OpenApiInfo { Title = "ExRates API - V1", Version = "1.0.0" });
 
             Directory
                 .GetFiles(AppContext.BaseDirectory, "*.xml", SearchOption.TopDirectoryOnly).ToList()
@@ -105,7 +105,7 @@ public static class AppConfigurator
         {
             app.UseSwagger().UseSwaggerUI(u =>
             {
-                u.SwaggerEndpoint("v1/swagger.yaml", "Rates API - V1");
+                u.SwaggerEndpoint("v1/swagger.yaml", "ExRates API - V1");
             });
         }
 
