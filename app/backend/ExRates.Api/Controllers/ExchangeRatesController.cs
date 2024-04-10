@@ -16,14 +16,14 @@ namespace ExRates.Api.V1;
 public sealed class ExchangeRatesController : ControllerBase
 {
     private readonly ILogger<ExchangeRatesController> _logger;
-    private readonly IOptionsSnapshot<ExRatesOptions> _options;
+    private readonly ExRatesOptions _options;
     private readonly IExchangeRatesService _service;
 
     public ExchangeRatesController(ILogger<ExchangeRatesController> logger,
         IOptionsSnapshot<ExRatesOptions> options, IExchangeRatesService service)
     {
         _logger = logger;
-        _options = options;
+        _options = options.Value;
         _service = service;
     }
 
@@ -33,8 +33,7 @@ public sealed class ExchangeRatesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<IEnumerable<ExchangeRate>>> GetExchangeRates()
     {
-        var sourceCurrencies = _options.Value
-            .SourceCurrencies.Select(label => Currency.CreateUnsafe(label));
+        var sourceCurrencies = _options.SourceCurrencies.Select(label => Currency.CreateUnsafe(label));
 
         return (await _service.GetExchangeRatesAsync(sourceCurrencies))
             .Match<ActionResult<IEnumerable<ExchangeRate>>>(
@@ -44,7 +43,7 @@ public sealed class ExchangeRatesController : ControllerBase
                     TargetCurrency = rate.TargetCurrency.Code,
                     Value = rate.Value
                 })),
-                error => error.Match(internalError => new StatusCodeResult(StatusCodes.Status500InternalServerError))
+                error => error.Match(_ => new StatusCodeResult(StatusCodes.Status500InternalServerError))
             );
     }
 }
