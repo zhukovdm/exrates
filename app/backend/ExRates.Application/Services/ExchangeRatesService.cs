@@ -10,19 +10,19 @@ namespace ExRates.Application;
 
 public sealed class ExchangeRatesService : IExchangeRatesService
 {
-    private readonly ILogger<ExchangeRatesService> _logger;
-    private readonly IExchangeRateProvider _provider;
+    private readonly ILogger<ExchangeRatesService> logger;
+    private readonly IExchangeRateProvider provider;
 
     public ExchangeRatesService(ILogger<ExchangeRatesService> logger, IExchangeRateProvider provider)
     {
-        _logger = logger;
-        _provider = provider;
+        this.logger = logger;
+        this.provider = provider;
     }
 
     public async Task<Try<IEnumerable<ExchangeRate>, ExchangeRatesServiceError>> GetExchangeRatesAsync(
         IEnumerable<Currency> sourceCurrencies)
     {
-        return (await _provider.GetAvailableExchangeRatesAsync())
+        return (await provider.GetAvailableExchangeRatesAsync())
             .Map<IEnumerable<ExchangeRate>, ExchangeRatesServiceError>(
                 rates =>
                 {

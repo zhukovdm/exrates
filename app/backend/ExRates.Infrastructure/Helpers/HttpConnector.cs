@@ -8,16 +8,16 @@ namespace ExRates.Infrastructure;
 
 public sealed class HttpConnector : IHttpConnector
 {
-    private readonly HttpClient _httpClient;
+    private readonly HttpClient httpClient;
 
     public HttpConnector(HttpClient httpClient)
     {
-        _httpClient = httpClient;
+        this.httpClient = httpClient;
     }
 
     public async Task<Try<string, HttpConnectorError>> GetAsync(Uri url)
     {
-        return await (await Try.CatchAsync<HttpResponseMessage, Exception>(_ => _httpClient.GetAsync(url)))
+        return await (await Try.CatchAsync<HttpResponseMessage, Exception>(_ => httpClient.GetAsync(url)))
             .MapError(e => new HttpConnectorError(new HttpConnectorFailedRequest(e.Message)))
             .FlatMapAsync(async m =>
             {

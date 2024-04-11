@@ -17,38 +17,38 @@ public sealed class CnbOpenApiExchangeRateProvider : IExchangeRateProvider
     /// </summary>
     private static readonly Lazy<Option<Currency>> targetCurrency = new(() => Currency.Create("CZK"));
 
-    private readonly ILogger<CnbOpenApiExchangeRateProvider> _logger;
-    private readonly CnbOptions _options;
-    private readonly IHttpConnector _connector;
-    private readonly IJsonParser _parser;
+    private readonly ILogger<CnbOpenApiExchangeRateProvider> logger;
+    private readonly CnbOptions options;
+    private readonly IHttpConnector connector;
+    private readonly IJsonParser parser;
 
     public CnbOpenApiExchangeRateProvider(ILogger<CnbOpenApiExchangeRateProvider> logger,
         IOptionsSnapshot<CnbOptions> options, IHttpConnector connector, IJsonParser parser)
     {
-        _logger = logger;
-        _options = options.Value;
-        _connector = connector;
-        _parser = parser;
+        this.logger = logger;
+        this.options = options.Value;
+        this.connector = connector;
+        this.parser = parser;
     }
 
     public async Task<Try<IEnumerable<ExchangeRate>, ExchangeRateProviderError>> GetAvailableExchangeRatesAsync()
     {
-        var targetUrl = new Uri($"{_options.OpenApi.BaseUrl}?date={DateTime.Now.ToString("yyyy-MM-dd")}&lang=EN");
+        var targetUrl = new Uri($"{options.OpenApi.BaseUrl}?date={DateTime.Now.ToString("yyyy-MM-dd")}&lang=EN");
 
-        return (await _connector.GetAsync(targetUrl))
+        return (await connector.GetAsync(targetUrl))
             .MapError(error =>
             {
                 error.Match(
-                    e => _logger.LogError("Failed GET request towards {TargetUrl}: {Message}", targetUrl, e.Message),
-                    e => _logger.LogError("Unable to GET data from {TargetUrl} due to unexpected status code {Code}.", targetUrl, e.Code)
+                    e => logger.LogError("Failed GET request towards {TargetUrl}: {Message}", targetUrl, e.Message),
+                    e => logger.LogError("Unable to GET data from {TargetUrl} due to unexpected status code {Code}.", targetUrl, e.Code)
                 );
                 return new ExchangeRateProviderError(new ExchangeRateProviderCommunicationError());
             })
-            .FlatMap(json => _parser.Parse<ExRateDailyResponse>(json)
+            .FlatMap(json => parser.Parse<ExRateDailyResponse>(json)
                 .MapError(error =>
                 {
                     error.Match(
-                        e => _logger.LogError("JSON parser failed: {Message}", e.Message)
+                        e => logger.LogError("JSON parser failed: {Message}", e.Message)
                     );
                     return new ExchangeRateProviderError(new ExchangeRateProviderSerializationError());
                 }))

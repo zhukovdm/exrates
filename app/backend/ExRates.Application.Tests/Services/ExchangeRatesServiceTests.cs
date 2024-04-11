@@ -9,12 +9,12 @@ namespace ExRates.Application.Tests;
 [TestClass]
 public class ExchangeRatesServiceTests
 {
-    private ILogger<ExchangeRatesService> _l = null!;
+    private ILogger<ExchangeRatesService> l = null!;
 
     [TestInitialize]
     public void Initialize()
     {
-        _l = new Microsoft.Extensions.Logging.Abstractions.NullLogger<ExchangeRatesService>();
+        l = new Microsoft.Extensions.Logging.Abstractions.NullLogger<ExchangeRatesService>();
     }
 
     [TestCleanup]
@@ -23,7 +23,7 @@ public class ExchangeRatesServiceTests
     [TestMethod]
     public async Task ShouldResolveIntoServiceErrorDueToFailingExchangeProvider()
     {
-        var srv = new ExchangeRatesService(_l, new FailingExchangeRateProvider());
+        var srv = new ExchangeRatesService(l, new FailingExchangeRateProvider());
         var res = await srv.GetExchangeRatesAsync(Enumerable.Empty<Currency>());
         res.Match(
             suc => Assert.Fail(),

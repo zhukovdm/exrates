@@ -15,16 +15,16 @@ namespace ExRates.Api.V1;
 [Route("api/v1/exrates")]
 public sealed class ExchangeRatesController : ControllerBase
 {
-    private readonly ILogger<ExchangeRatesController> _logger;
-    private readonly ExRatesOptions _options;
-    private readonly IExchangeRatesService _service;
+    private readonly ILogger<ExchangeRatesController> logger;
+    private readonly ExRatesOptions options;
+    private readonly IExchangeRatesService service;
 
     public ExchangeRatesController(ILogger<ExchangeRatesController> logger,
         IOptionsSnapshot<ExRatesOptions> options, IExchangeRatesService service)
     {
-        _logger = logger;
-        _options = options.Value;
-        _service = service;
+        this.logger = logger;
+        this.options = options.Value;
+        this.service = service;
     }
 
     [HttpGet, Route("", Name = "GetExchangeRates")]
@@ -33,9 +33,9 @@ public sealed class ExchangeRatesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<IEnumerable<ExchangeRate>>> GetExchangeRates()
     {
-        var sourceCurrencies = _options.SourceCurrencies.Select(label => Currency.CreateUnsafe(label));
+        var sourceCurrencies = options.SourceCurrencies.Select(label => Currency.CreateUnsafe(label));
 
-        return (await _service.GetExchangeRatesAsync(sourceCurrencies))
+        return (await service.GetExchangeRatesAsync(sourceCurrencies))
             .Match<ActionResult<IEnumerable<ExchangeRate>>>(
                 rates => Ok(rates.Select(rate => new ExchangeRate()
                 {

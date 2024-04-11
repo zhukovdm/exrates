@@ -11,14 +11,14 @@ namespace ExRates.Api.Tests;
 [TestClass]
 public sealed class ExchangeRatesControllerTests
 {
-    private ILogger<ExchangeRatesController> _l = null!;
-    private IOptionsSnapshot<ExRatesOptions> _o = null!;
+    private ILogger<ExchangeRatesController> l = null!;
+    private IOptionsSnapshot<ExRatesOptions> o = null!;
 
     [TestInitialize]
     public void Initialize()
     {
-        _l = new Microsoft.Extensions.Logging.Abstractions.NullLogger<ExchangeRatesController>();
-        _o = new ExRatesOptionsSnapshot();
+        l = new Microsoft.Extensions.Logging.Abstractions.NullLogger<ExchangeRatesController>();
+        o = new ExRatesOptionsSnapshot();
     }
 
     [TestCleanup]
@@ -27,7 +27,7 @@ public sealed class ExchangeRatesControllerTests
     [TestMethod]
     public async Task ShouldReturn500DueToFailingService()
     {
-        var ctr = new ExchangeRatesController(_l, _o, new FailingExchangeRatesService());
+        var ctr = new ExchangeRatesController(l, o, new FailingExchangeRatesService());
         var res = (await ctr.GetExchangeRates()).Result as StatusCodeResult;
         Assert.IsTrue(res?.StatusCode == StatusCodes.Status500InternalServerError);
     }

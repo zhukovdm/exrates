@@ -9,16 +9,16 @@ namespace ExRates.Infrastructure.Tests;
 [TestClass]
 public sealed class CnbOpenApiExchangeRateProviderTests
 {
-    private ILogger<CnbOpenApiExchangeRateProvider> _l = null!;
-    private IOptionsSnapshot<CnbOptions> _o = null!;
-    private IJsonParser _p = null!;
+    private ILogger<CnbOpenApiExchangeRateProvider> l = null!;
+    private IOptionsSnapshot<CnbOptions> o = null!;
+    private IJsonParser p = null!;
 
     [TestInitialize]
     public void Initialize()
     {
-        _l = new Microsoft.Extensions.Logging.Abstractions.NullLogger<CnbOpenApiExchangeRateProvider>();
-        _o = new CnbOptionsSnapshot();
-        _p = new JsonParser();
+        l = new Microsoft.Extensions.Logging.Abstractions.NullLogger<CnbOpenApiExchangeRateProvider>();
+        o = new CnbOptionsSnapshot();
+        p = new JsonParser();
     }
 
     [TestCleanup]
@@ -27,7 +27,7 @@ public sealed class CnbOpenApiExchangeRateProviderTests
     [TestMethod]
     public async Task ShouldReturnErrorDueToFailingHttpConnector()
     {
-        var prv = new CnbOpenApiExchangeRateProvider(_l, _o, new FailingHttpConnector(), _p);
+        var prv = new CnbOpenApiExchangeRateProvider(l, o, new FailingHttpConnector(), p);
         var res = await prv.GetAvailableExchangeRatesAsync();
         res.Match(
             suc => Assert.Fail(),
