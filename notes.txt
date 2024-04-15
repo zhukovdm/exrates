@@ -28,7 +28,8 @@ https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/2584
 https://medium.com/@dipendupaul/documenting-a-versioned-net-web-api-using-swagger-eec0fe7aa010
 https://medium.com/@seldah/managing-multiple-versions-of-your-api-with-net-and-swagger-47b4143e8bf5
 https://parceljs.org/features/development/#dev-server
-https://youtu.be/t20txMT82ws (FuncSharp introduction)
+https://youtu.be/t20txMT82ws (FuncSharp introduction, basic examples with Option, Try, Map, FlatMap, etc., some snippets are outdated)
+https://vimeo.com/113588389 (functional programming design patterns, everything is a function, referential transparency, algebraic data types, partial application for dependency injection, continuations := partially applied functions with certain behavior called from our function, Monad simplified ~ chaining of continuations + *monadic bind* as an adapter via |> bind f and taskBind, error handling with multiple paths, lifting into a wrapper, *functor* ~ mappable type, *monoid* ~ identity + closed composition + associative ~ parallelizable + need not be commutative, monoid homomorphism ~ map a monoid into another monoid, endomorphisms ~ a -> a functions are monoids and composable, monads are monoids in the category of endofunctors)
 https://www.wikidata.org/wiki/Property:P498
 https://cbaonline.cz/upload/2468-cesky-standard-pro-open-banking-v06.pdf
 https://learn.microsoft.com/en-us/dotnet/api/system.text.codepagesencodingprovider.instance?view=net-8.0&redirectedfrom=MSDN#System_Text_CodePagesEncodingProvider_Instance
